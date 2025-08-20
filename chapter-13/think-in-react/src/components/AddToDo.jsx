@@ -1,15 +1,14 @@
 import { useState } from 'react';
+import { useToDoContext } from './context/ToDoContext';
 
-function AddToDo({ setTodos }) {
+function AddToDo() {
     const [newTodo, setNewTodo] = useState('');
+    const { dispatch } = useToDoContext();
 
     function handleSubmit(e) {
         e.preventDefault();
         if (!newTodo.trim()) return alert('Please enter a to-do item');
-        setTodos((prevTodos) => [
-            { id: Date.now(), text: newTodo, completed: false },
-            ...prevTodos,
-        ]);
+        dispatch({ type: 'ADD_TODO', payload: newTodo });
         setNewTodo('');
     }
     return (

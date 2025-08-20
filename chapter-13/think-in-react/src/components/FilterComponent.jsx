@@ -1,4 +1,6 @@
-function FilterComponent({ setFilter }) {
+import { useToDoContext } from './context/ToDoContext';
+function FilterComponent() {
+    const { setFilter } = useToDoContext();
     function setFilterInView(filter) {
         setFilter(filter);
     }
